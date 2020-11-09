@@ -22,7 +22,7 @@ namespace Task02
     {
         private const string inputPath = "input.txt";
         private const string outputPath = "output.txt";
-        
+
         static int[] ReadFile(string path)
         {
             string elements = File.ReadAllText(path);
@@ -35,7 +35,7 @@ namespace Task02
             }
             return result;
         }
-        
+
         static bool CheckArray(int[] array)
         {
             foreach (int element in array)
@@ -47,15 +47,15 @@ namespace Task02
             }
             return true;
         }
-        
+
         static int[] ConvertArray(int[] array)
         {
             int[] powers = new int[array.Length];
             int i = 0;
-            foreach(int element in array)
+            foreach (int element in array)
             {
                 int pow = 1;
-                while(element > pow * 2)
+                while (element > pow * 2)
                 {
                     pow *= 2;
                 }
@@ -79,7 +79,7 @@ namespace Task02
         {
             // do not touch
             FillFile();
-            
+
             int[] A;
             int[] B;
             try
@@ -92,14 +92,14 @@ namespace Task02
                 B = ConvertArray(A);
                 WriteFile(outputPath, B);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
             // do not touch
             ConsoleOutput();
         }
-        
+
         #region Testing methods for Github Classroom, do not touch!
 
         static void FillFile()

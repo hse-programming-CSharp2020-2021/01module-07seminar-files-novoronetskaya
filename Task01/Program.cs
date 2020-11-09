@@ -22,14 +22,14 @@ namespace _01_07_Files
     {
         private const string inputPath = "input.txt";
         private const string outputPath = "output.txt";
-        
+
         static int[] ReadFile(string path)
         {
             string elements = File.ReadAllText(path);
             string[] numbers = elements.Split(' ');
             int[] result = new int[numbers.Length];
             int i = 0;
-            foreach(string num in numbers)
+            foreach (string num in numbers)
             {
                 int.TryParse(num, out result[i++]);
             }
@@ -38,7 +38,7 @@ namespace _01_07_Files
 
         static bool CheckArray(int[] array)
         {
-            foreach(int element in array)
+            foreach (int element in array)
             {
                 if (element < -10 || element > 10)
                 {
@@ -47,14 +47,14 @@ namespace _01_07_Files
             }
             return true;
         }
-        
+
         static bool[] IntToBoolArray(int[] array)
         {
             bool[] isPositive = new bool[array.Length];
             int i = 0;
-            foreach(int element in array)
+            foreach (int element in array)
             {
-                if(element >= 0)
+                if (element >= 0)
                 {
                     isPositive[i++] = true;
                 }
@@ -65,11 +65,11 @@ namespace _01_07_Files
             }
             return isPositive;
         }
-        
+
         static void WriteFile(string path, bool[] array)
         {
             string answer = String.Empty;
-            foreach(bool element in array)
+            foreach (bool element in array)
             {
                 answer += $"{element} ";
             }
@@ -81,7 +81,7 @@ namespace _01_07_Files
         {
             // do not touch
             FillFile();
-            
+
             int[] A;
             bool[] L;
             try
@@ -95,11 +95,11 @@ namespace _01_07_Files
                 L = IntToBoolArray(A);
                 WriteFile(outputPath, L);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            
+
             // do not touch
             ConsoleOutput();
         }
