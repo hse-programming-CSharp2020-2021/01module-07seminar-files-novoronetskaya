@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.CompilerServices;
+using System;
 using System.IO;
 
 /*
@@ -24,22 +25,53 @@ namespace Task02
         
         static int[] ReadFile(string path)
         {
-            // TODO: implement this method
+            string elements = File.ReadAllText(path);
+            string[] numbers = elements.Split(' ');
+            int[] result = new int[numbers.Length];
+            int i = 0;
+            foreach (string num in numbers)
+            {
+                int.TryParse(num, out result[i++]);
+            }
+            return result;
         }
         
         static bool CheckArray(int[] array)
         {
-            // TODO: implement this method
+            foreach (int element in array)
+            {
+                if (element < 2 || element > 10000)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
         
         static int[] ConvertArray(int[] array)
         {
-            // TODO: implement this method
+            int[] powers = new int[array.Length];
+            int i = 0;
+            foreach(int element in array)
+            {
+                int pow = 1;
+                while(element > pow * 2)
+                {
+                    pow *= 2;
+                }
+                powers[i++] = pow;
+            }
+            return powers;
         }
 
         static void WriteFile(string path, int[] array)
         {
-            // TODO: implement this method
+            string answer = String.Empty;
+            foreach (int element in array)
+            {
+                answer += $"{element} ";
+            }
+            File.WriteAllText(path, answer);
         }
 
         // you do not need to fill your file manually, you can work with console input
@@ -50,19 +82,20 @@ namespace Task02
             
             int[] A;
             int[] B;
-            
             try
             {
                 A = ReadFile(inputPath);
-                
                 if (!CheckArray(A))
-                    // TODO: implement this case
-                
+                {
+                    Console.WriteLine("Incorrect input");
+                }
                 B = ConvertArray(A);
                 WriteFile(outputPath, B);
             }
-            // TODO: catch with meaningful message
-            
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             // do not touch
             ConsoleOutput();
         }
