@@ -73,6 +73,7 @@ namespace _01_07_Files
             {
                 answer += $"{element} ";
             }
+            answer = answer.ToLower();
             File.WriteAllText(path, answer);
         }
 
@@ -89,7 +90,7 @@ namespace _01_07_Files
                 A = ReadFile(inputPath);
                 if (!CheckArray(A))
                 {
-                    Console.WriteLine("Incorrect input");
+                    Console.WriteLine("Incorrect Input");
                     return;
                 }
                 L = IntToBoolArray(A);
