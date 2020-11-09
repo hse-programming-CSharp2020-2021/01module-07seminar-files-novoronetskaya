@@ -86,7 +86,8 @@ namespace Task02
                 A = ReadFile(inputPath);
                 if (!CheckArray(A))
                 {
-                    Console.WriteLine("Incorrect input");
+                    Console.WriteLine("Incorrect Input");
+                    return;
                 }
                 B = ConvertArray(A);
                 WriteFile(outputPath, B);
