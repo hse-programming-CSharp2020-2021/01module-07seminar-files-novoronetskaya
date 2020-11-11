@@ -22,25 +22,59 @@ namespace _01_07_Files
     {
         private const string inputPath = "input.txt";
         private const string outputPath = "output.txt";
-        
+
         static int[] ReadFile(string path)
         {
-            // TODO: implement this method
+            string elements = File.ReadAllText(path);
+            string[] numbers = elements.Split(' ');
+            int[] result = new int[numbers.Length];
+            int i = 0;
+            foreach (string num in numbers)
+            {
+                int.TryParse(num, out result[i++]);
+            }
+            return result;
         }
 
         static bool CheckArray(int[] array)
         {
-            // TODO: implement this method
+            foreach (int element in array)
+            {
+                if (element < -10 || element > 10)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
-        
+
         static bool[] IntToBoolArray(int[] array)
         {
-            // TODO: implement this method
+            bool[] isPositive = new bool[array.Length];
+            int i = 0;
+            foreach (int element in array)
+            {
+                if (element >= 0)
+                {
+                    isPositive[i++] = true;
+                }
+                else
+                {
+                    isPositive[i++] = false;
+                }
+            }
+            return isPositive;
         }
-        
+
         static void WriteFile(string path, bool[] array)
         {
-            // TODO: implement this method
+            string answer = String.Empty;
+            foreach (bool element in array)
+            {
+                answer += $"{element} ";
+            }
+            answer = answer.ToLower();
+            File.WriteAllText(path, answer);
         }
 
         // you do not need to fill your file, you can work with console input
@@ -48,22 +82,25 @@ namespace _01_07_Files
         {
             // do not touch
             FillFile();
-            
+
             int[] A;
             bool[] L;
-            
             try
             {
                 A = ReadFile(inputPath);
-                
                 if (!CheckArray(A))
-                    // TODO: implement this case
-                
+                {
+                    Console.WriteLine("Incorrect Input");
+                    return;
+                }
                 L = IntToBoolArray(A);
                 WriteFile(outputPath, L);
             }
-            // TODO: catch with meaningful message
-            
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
             // do not touch
             ConsoleOutput();
         }
